@@ -18,7 +18,8 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
 
-    <script src="static/js/header.js"></script>
+    <script src="static/js/main.js"></script>
+    <script src="static/js/login.js"></script>
 </head>
 
 <body>
@@ -28,21 +29,21 @@
     <main>
         <h2 class="text-center">Авторизация</h2>
         <div class="container">
-            <form class="px-4 py-3">
+            <form class="px-4 py-3" id="loginForm" method="dialog">
                 <div class="mb-3">
-                    <label for="exampleDropdownFormEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleDropdownFormEmail1"
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email"
                         placeholder="email@example.com">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleDropdownFormPassword1" class="form-label">Пароль</label>
-                    <input type="password" class="form-control" id="exampleDropdownFormPassword1"
+                    <label for="password" class="form-label">Пароль</label>
+                    <input type="password" class="form-control" id="password"
                         placeholder="Password">
                 </div>
                 <button type="submit" class="btn btn-primary">Sign in</button>
             </form>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="registration.html">Нет аккаунта?</a>
+            <a class="dropdown-item" href="registration.html">Нет аккаунта? Пора зарегистрироваться!</a>
         </div>
     </main>
 
