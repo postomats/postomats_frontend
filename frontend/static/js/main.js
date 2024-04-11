@@ -1,5 +1,6 @@
 function logout() {
-
+    localStorage.removeItem('token');
+    location.href = '/'
 }
 
 
@@ -45,12 +46,12 @@ const modal = `<div class="modal fade" id="exampleModal" tabindex="-1" aria-labe
       <h5 class="modal-title" id="exampleModalLabel">Корзина</h5>
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" id='busket_body'>
         <p>test</p>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-      <button type="button" class="btn btn-primary">Заказать</button>
+      <button type="button" class="btn btn-primary" onclick="sendBusketOnServer">Заказать</button>
     </div>
   </div>
 </div>
@@ -59,14 +60,14 @@ const modal = `<div class="modal fade" id="exampleModal" tabindex="-1" aria-labe
 
 const nav_login = `<a class="nav-link" aria-current="page" href="/login.html">Авторизация</a>`
 
-const nav_logout = `<a class="nav-link" aria-current="page" href="#" onclick="logout()">Выйти</a>`
+const nav_logout = `<a type="button" class="btn btn-primary btn-sm" onclick="logout()">Выйти</button>`
 
 
 document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementsByTagName('header')[0];
     header.innerHTML = header_html;
 
-    if (localStorage.getItem('Token')) {
+    if (localStorage.getItem('token')) {
         document.getElementById('login_nav').innerHTML = nav_logout;
         document.getElementById('nav_list').innerHTML += busketButton;
     } else {

@@ -1,5 +1,5 @@
 function getBook() {
-    fetch('http://localhost:8000/?start=0&end=50').then((response) => response.json().then((data) => {
+    fetch('/api/bookworm/book').then((response) => response.json().then((data) => {
         const container = document.getElementById('books');
 
         for (const book of data) {
@@ -19,7 +19,7 @@ function getBook() {
             const cardNode = doc.body.firstChild;
             container.appendChild(cardNode);
         }
-    }))
+    })).catch(data => console.log(data))
 }
 
 
