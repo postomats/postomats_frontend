@@ -8,7 +8,7 @@ function getBusket() {
 }
 
 
-function pushToBusket(element){
+function pushToBusket(element) {
     const busket = getBusket();
     busket.push(element);
     localStorage.setItem('busket', JSON.stringify(busket));
@@ -16,9 +16,10 @@ function pushToBusket(element){
 
 
 function addToBusket(id) {
-    fetch(`http://localhost:8000/${id}`).then(res => res.json().then(data => {
+    fetch(`/api/bookworm/book/${id}`).then(res => res.json().then(data => {
         pushToBusket(data);
     }))
+    viewBusket()
 }
 
 function viewBusket() {
@@ -26,21 +27,38 @@ function viewBusket() {
     busket_body.innerHTML = ''
     const busket = getBusket();
 
-    if (busket.length == 0){
+    if (busket.length == 0) {
         busket_body.innerHTML = '<p>Корзина пока пустая</p>'
-         return;
+        return;
     }
 
     getBusket().forEach(element => {
-        console.log(element);
         busket_body.innerHTML += `<p>${element.title}. ${element.author}. ${element.publication_year}</p>`
     });
 
 }
 
-function sendBusketOnServer(){
+function sendBusketOnServer() {
     const busket = getBusket();
-    
+    console.log(busket);
+
+    fetch("/api/mcc/order/do", {
+        body:
+            JSON.stringify({
+                jwt: localStorage.getItem('token'),
+                content: JSON.stringify(busket)
+            })
+        ,
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        method: "POST"
+    }).then(response => response.json().then(data => {
+        localStorage.removeItem('busket');
+        location.href = '/orders.html';
+    }))
+
 }
 
 

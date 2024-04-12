@@ -3,6 +3,25 @@ function logout() {
     location.href = '/'
 }
 
+function checkJWT() {
+    const token = localStorage.getItem('token');
+
+    fetch(`/api/census/me?token=${token}`, {
+        headers: {
+            Accept: "application/json"
+        }
+    }).then(response => {
+        if (response.status != 200){
+            throw new Error(response.status);
+        }
+    }).catch(() => {
+        localStorage.removeItem('token');
+        location.href = 'login.html';
+    }
+
+    )
+}
+
 
 const header_html = `<nav class="navbar navbar-expand-lg bg-body-tertiary">
 <div class="container-fluid">
@@ -51,7 +70,7 @@ const modal = `<div class="modal fade" id="exampleModal" tabindex="-1" aria-labe
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-      <button type="button" class="btn btn-primary" onclick="sendBusketOnServer">Заказать</button>
+      <button type="button" class="btn btn-primary" onclick="sendBusketOnServer()">Заказать</button>
     </div>
   </div>
 </div>
@@ -70,9 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem('token')) {
         document.getElementById('login_nav').innerHTML = nav_logout;
         document.getElementById('nav_list').innerHTML += busketButton;
+        checkJWT();
     } else {
         document.getElementById('login_nav').innerHTML = nav_login;
-        
+
     }
 
 

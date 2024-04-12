@@ -19,6 +19,7 @@
         crossorigin="anonymous"></script>
 
     <script src="static/js/main.js"></script>
+    <script src="static/js/login.js"></script>
 </head>
 
 <body>
@@ -28,30 +29,35 @@
     <main>
         <h2 class="text-center">Регистрация</h2>
         <div class="container">
-            <form class="px-4 py-3">
+            <form class="px-4 py-3" id="registrForm" method="dialog">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email"
                         placeholder="email@example.com">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleDropdownFormEmail1" class="form-label">Имя</label>
-                    <input type="email" class="form-control" id="exampleDropdownFormEmail1"
+                    <label for="first_name" class="form-label">Имя</label>
+                    <input type="text" class="form-control" id="first_name"
                         placeholder="Иван">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleDropdownFormEmail1" class="form-label">Фамилия</label>
-                    <input type="email" class="form-control" id="exampleDropdownFormEmail1"
+                    <label for="last_name" class="form-label">Фамилия</label>
+                    <input type="text" class="form-control" id="last_name"
                         placeholder="Иванов">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleDropdownFormPassword1" class="form-label">Пароль</label>
-                    <input type="password" class="form-control" id="exampleDropdownFormPassword1"
+                    <label for="group" class="form-label">Группа</label>
+                    <input type="text" class="form-control" id="group"
                         placeholder="Password">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleDropdownFormPassword1" class="form-label">Повторите пароль</label>
-                    <input type="password" class="form-control" id="exampleDropdownFormPassword1"
+                    <label for="password1" class="form-label">Пароль</label>
+                    <input type="password" class="form-control" id="password1"
+                        placeholder="Password">
+                </div>
+                <div class="mb-3">
+                    <label for="password2" class="form-label">Повторите пароль</label>
+                    <input type="password" class="form-control" id="password2"
                         placeholder="Password">
                 </div>
                 <button type="submit" class="btn btn-primary">Войти</button>
